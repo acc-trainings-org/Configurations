@@ -12,6 +12,8 @@ data:
   spring.data.mongodb.uri: mongodb+srv://demo123:demo123@acctrainings.dntd4.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
   spring.data.mongodb.database: db-acc-trainings
   my.path: /api/vs
+  springdoc.swagger-ui.operationsSorter: method
+  springdoc.swagger-ui.path: /api/<initials>/customer-api/swagger-ui.html
   #datastore.mongodb.collection.name: customer-coll-local
 ---
 apiVersion: v1
