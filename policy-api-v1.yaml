@@ -11,8 +11,8 @@ data:
   external.services.customer.uri: http://customer-api-<initials>:8080
   spring.data.mongodb.uri: mongodb+srv://demo123:demo123@acctrainings.dntd4.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
   spring.data.mongodb.database: db-acc-trainings
-#Swagger
-  springdoc.swagger-ui.path: /policy-api/swagger-ui.html
+  my.path: /api/vs
+  springdoc.swagger-ui.path: /api/vs/policy-api/swagger-ui.html
   springdoc.swagger-ui.operationsSorter: method
 ---
 apiVersion: v1
@@ -51,7 +51,7 @@ spec:
       containers:
       - name: policy-api-<initials>
         image: quay.io/acctrainings/policy-api-gold:release-1.0.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         envFrom:
           - configMapRef:
               name: policy-api-<initials>
