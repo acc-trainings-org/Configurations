@@ -1,0 +1,69 @@
+# Service and Deployment configuration for Customer service deployment.
+
+##################################################################################################
+# Customer service
+##################################################################################################
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customer-api
+data:
+  #spring.profiles.active: local
+  spring.data.mongodb.uri: mongodb+srv://demo123:demo123@acctrainings.dntd4.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
+  spring.data.mongodb.database: db-acc-trainings
+  my.path: /api/vs
+  #datastore.mongodb.collection.name: customer-coll-local
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer-api
+  labels:
+    app: customer-api
+    service: customer-api
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: customer-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-api
+  labels:
+    app: customer-api
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer-api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: customer-api
+        version: v1
+    spec:
+      containers:
+      - name: customer-api
+        image: quay.io/acctrainings/customer-api-gold:main
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - configMapRef:
+              name: customer-api
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Route
+metadata:
+  name: customer-api
+  labels:
+    app: customer-api
+spec:
+  to:
+    kind: Service
+    name: customer-api
