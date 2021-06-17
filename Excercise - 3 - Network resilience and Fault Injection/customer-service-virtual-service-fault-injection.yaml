@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: customer-api-virtual-service-pod05
+  name: customer-api-virtual-service-pod03
 spec:
   gateways:
-  - acctrainings-gateway-pod05
+  - acctrainings-gateway-pod03
   hosts:
   - '*.apps.azureneocp.neinnovation-ocp.com'
   http:
@@ -15,4 +15,4 @@ spec:
           value: 100
     route:
     - destination:
-        host: customer-api-pod05
+        host: customer-api-pod03
