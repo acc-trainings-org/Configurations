@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: acctrainings-gateway-pod02
+  name: acctrainings-gateway-pod01
 spec:
   selector:
     istio: ingressgateway

@@ -5,66 +5,66 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: policy-api-pod02
+  name: policy-api-pod01
 data:
-  spring.application.name: policy-api-pod02
-  external.services.customer.uri: http://customer-api-pod02:8080
+  spring.application.name: policy-api-pod01
+  external.services.customer.uri: http://customer-api-pod01:8080
   spring.data.mongodb.uri: mongodb+srv://demo123:demo123@acctrainings.dntd4.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
   spring.data.mongodb.database: db-acc-trainings
-  my.path: /api/pod02
-  springdoc.swagger-ui.path: /api/pod02/policy-api/swagger-ui.html
+  my.path: /api/pod01
+  springdoc.swagger-ui.path: /api/pod01/policy-api/swagger-ui.html
   springdoc.swagger-ui.operationsSorter: method
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: policy-api-pod02
+  name: policy-api-pod01
   labels:
-    app: policy-api-pod02
-    service: policy-api-pod02
+    app: policy-api-pod01
+    service: policy-api-pod01
 spec:
   ports:
   - port: 8080
     name: http
   selector:
-    app: policy-api-pod02
+    app: policy-api-pod01
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: policy-api-release-1.0.0
   labels:
-    app: policy-api-pod02
+    app: policy-api-pod01
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: policy-api-pod02
+      app: policy-api-pod01
       version: v1
   template:
     metadata:
       labels:
-        app: policy-api-pod02
+        app: policy-api-pod01
         version: v1
     spec:
       containers:
-      - name: policy-api-pod02
+      - name: policy-api-pod01
         image: quay.io/acctrainings/policy-api-gold:release-1.0.0
         imagePullPolicy: Always
         envFrom:
           - configMapRef:
-              name: policy-api-pod02
+              name: policy-api-pod01
         ports:
         - containerPort: 8080
 ---
 apiVersion: v1
 kind: Route
 metadata:
-  name: policy-api-pod02
+  name: policy-api-pod01
   labels:
-    app: policy-api-pod02
+    app: policy-api-pod01
 spec:
   to:
     kind: Service
-    name: policy-api-pod02
+    name: policy-api-pod01

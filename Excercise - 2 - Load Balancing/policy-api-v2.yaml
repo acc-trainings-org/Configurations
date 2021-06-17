@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: policy-api-pod02
+  name: policy-api-pod01
 ---
 ##################################################################################################
 # Policy service V2
@@ -13,29 +13,29 @@ kind: Deployment
 metadata:
   name: policy-api-release-2.0.0
   labels:
-    app: policy-api-pod02
+    app: policy-api-pod01
     version: v2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: policy-api-pod02
+      app: policy-api-pod01
       version: v2
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "true"
       labels:
-        app: policy-api-pod02
+        app: policy-api-pod01
         version: v2
     spec:
-      serviceAccountName: policy-api-pod02
+      serviceAccountName: policy-api-pod01
       containers:
-      - name: policy-api-pod02
+      - name: policy-api-pod01
         image: quay.io/acctrainings/policy-api-gold:release-2.0.0
         imagePullPolicy: Always
         envFrom:
           - configMapRef:
-              name: policy-api-pod02
+              name: policy-api-pod01
         ports:
         - containerPort: 8080

@@ -1,25 +1,25 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: policy-api-virtual-service-pod02
+  name: policy-api-virtual-service-pod01
 spec:
   gateways:
-      - acctrainings-gateway-pod02
+      - acctrainings-gateway-pod01
   hosts:
       - '*.apps.azureneocp.neinnovation-ocp.com'
   http:
       - match:
           - uri:
-              prefix: /api/pod02/policy
+              prefix: /api/pod01/policy
         route:
           - destination:
-              host: policy-api-pod02
+              host: policy-api-pod01
               port:
                number: 8080
               subset: v1
             weight: 80
           - destination:
-              host: policy-api-pod02
+              host: policy-api-pod01
               port:
                number: 8080
               subset: v2
