@@ -5,66 +5,66 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: policy-api-<initials>
+  name: policy-api-pod05
 data:
-  spring.application.name: policy-api-<initials>
-  external.services.customer.uri: http://customer-api-<initials>:8080
+  spring.application.name: policy-api-pod05
+  external.services.customer.uri: http://customer-api-pod05:8080
   spring.data.mongodb.uri: mongodb+srv://demo123:demo123@acctrainings.dntd4.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
   spring.data.mongodb.database: db-acc-trainings
-  my.path: /api/vs
-  springdoc.swagger-ui.path: /api/vs/policy-api/swagger-ui.html
+  my.path: /api/pod05
+  springdoc.swagger-ui.path: /api/pod05/policy-api/swagger-ui.html
   springdoc.swagger-ui.operationsSorter: method
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: policy-api-<initials>
+  name: policy-api-pod05
   labels:
-    app: policy-api-<initials>
-    service: policy-api-<initials>
+    app: policy-api-pod05
+    service: policy-api-pod05
 spec:
   ports:
   - port: 8080
     name: http
   selector:
-    app: policy-api-<initials>
+    app: policy-api-pod05
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: policy-api-release-1.0.0
   labels:
-    app: policy-api-<initials>
+    app: policy-api-pod05
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: policy-api-<initials>
+      app: policy-api-pod05
       version: v1
   template:
     metadata:
       labels:
-        app: policy-api-<initials>
+        app: policy-api-pod05
         version: v1
     spec:
       containers:
-      - name: policy-api-<initials>
+      - name: policy-api-pod05
         image: quay.io/acctrainings/policy-api-gold:release-1.0.0
         imagePullPolicy: Always
         envFrom:
           - configMapRef:
-              name: policy-api-<initials>
+              name: policy-api-pod05
         ports:
         - containerPort: 8080
 ---
 apiVersion: v1
 kind: Route
 metadata:
-  name: policy-api-<initials>
+  name: policy-api-pod05
   labels:
-    app: policy-api-<initials>
+    app: policy-api-pod05
 spec:
   to:
     kind: Service
-    name: policy-api-<initials>
+    name: policy-api-pod05
