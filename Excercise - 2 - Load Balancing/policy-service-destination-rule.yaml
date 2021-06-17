@@ -1,9 +1,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: policy-api-pod03
+  name: policy-api-pod02
 spec:
-  host: policy-api-pod03
+  host: policy-api-pod02
   trafficPolicy:
     loadBalancer:
       simple: RANDOM #ROUND_ROBIN #Load Balancing
