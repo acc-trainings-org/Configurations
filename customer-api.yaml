@@ -13,7 +13,7 @@ data:
   spring.data.mongodb.database: db-acc-trainings
   my.path: /api/pod01
   springdoc.swagger-ui.operationsSorter: method
-  springdoc.swagger-ui.path: /api/<initials>/customer-api/swagger-ui.html
+  springdoc.swagger-ui.path: /api/pod01/customer-api/swagger-ui.html
   #datastore.mongodb.collection.name: customer-coll-local
 ---
 apiVersion: v1
