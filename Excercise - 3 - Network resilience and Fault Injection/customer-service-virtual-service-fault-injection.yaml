@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: customer-api-virtual-service-pod04
+spec:
+  gateways:
+  - acctrainings-gateway-pod04
+  hosts:
+  - '*.apps.azureneocp.neinnovation-ocp.com'
+  http:
+  - fault:
+      delay:
+        fixedDelay: 7s
+        percentage:
+          value: 100
+    route:
+    - destination:
+        host: customer-api-pod04
