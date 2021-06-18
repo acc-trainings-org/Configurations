@@ -4,7 +4,7 @@ metadata:
   name: customer-api-virtual-service-main
 spec:
   hosts:
-  - '*.apps.azureneocp.neinnovation-ocp.com'
+  - '*.apps.awsopenshift.ne-innovation.com'
   gateways:
   - acctrainings-gateway-main
   http:
