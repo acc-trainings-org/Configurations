@@ -6,7 +6,7 @@ spec:
   gateways:
     - acctrainings-gateway-pod01
   hosts:
-    - '*.apps.azureneocp.neinnovation-ocp.com'
+    - '*.apps.awsopenshift.ne-innovation.com'
   http:
     - match:
         - uri:
