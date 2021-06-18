@@ -6,7 +6,7 @@ spec:
   gateways:
   - acctrainings-gateway-pod04
   hosts:
-  - '*.apps.azureneocp.neinnovation-ocp.com'
+  - '*.apps.awsopenshift.ne-innovation.com'
   http:
   - fault:
       delay:
