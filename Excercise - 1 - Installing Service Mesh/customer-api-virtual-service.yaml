@@ -4,7 +4,7 @@ metadata:
   name: customer-api-virtual-service-pod01
 spec:
   hosts:
-  - '*.apps.azureneocp.neinnovation-ocp.com'
+  - '*.apps.awsopenshift.ne-innovation.com'
   gateways:
   - acctrainings-gateway-pod01
   http:
