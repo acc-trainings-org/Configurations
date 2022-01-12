@@ -9,7 +9,7 @@ metadata:
 data:
   spring.application.name: policy-api-main
   external.services.customer.uri: http://customer-api-main:8080
-  spring.data.mongodb.uri: mongodb+srv://demo123:demo123@acctrainings.dntd4.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
+  spring.data.mongodb.uri: mongodb+srv://demo1234:demo1234@cluster0.na252.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
   spring.data.mongodb.database: db-acc-trainings
   my.path: /api/main
   springdoc.swagger-ui.path: /api/main/policy-api/swagger-ui.html
