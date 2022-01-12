@@ -1,25 +1,25 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: policy-api-virtual-service-main
+  name: policy-api-virtual-service
 spec:
   gateways:
-      - acctrainings-gateway-main
+      - acctrainings-gateway
   hosts:
-      - '*.apps.awsopenshift.ne-innovation.com'
+      - '*.apps.aro.neion.net'
   http:
       - match:
           - uri:
-              prefix: /api/main/policy
+              prefix: /policy
         route:
           - destination:
-              host: policy-api-main
+              host: policy-api
               port:
                number: 8080
               subset: v1
             weight: 80
           - destination:
-              host: policy-api-main
+              host: policy-api
               port:
                number: 8080
               subset: v2

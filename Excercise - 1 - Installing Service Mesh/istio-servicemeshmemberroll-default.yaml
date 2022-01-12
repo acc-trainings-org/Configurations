@@ -4,9 +4,4 @@ metadata:
   name: default
 spec:
   members:
-    - acc-trainings
-    - acc-trainings-pod01
-    - acc-trainings-pod02
-    - acc-trainings-pod03
-    - acc-trainings-pod04
-    - acc-trainings-pod05
+    - acc-trainings-vikas

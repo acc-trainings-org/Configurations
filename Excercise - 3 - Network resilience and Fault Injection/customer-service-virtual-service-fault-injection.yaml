@@ -1,12 +1,12 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: customer-api-virtual-service-main
+  name: customer-api-virtual-service
 spec:
   gateways:
-  - acctrainings-gateway-main
+  - acctrainings-gateway
   hosts:
-  - '*.apps.awsopenshift.ne-innovation.com'
+  - '*.apps.aro.neion.net'
   http:
   - fault:
       delay:
@@ -15,4 +15,4 @@ spec:
           value: 100
     route:
     - destination:
-        host: customer-api-main
+        host: customer-api

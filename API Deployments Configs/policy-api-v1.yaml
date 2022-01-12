@@ -5,66 +5,66 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: policy-api-main
+  name: policy-api
 data:
-  spring.application.name: policy-api-main
-  external.services.customer.uri: http://customer-api-main:8080
+  spring.application.name: policy-api
+  external.services.customer.uri: http://customer-api:8080
   spring.data.mongodb.uri: mongodb+srv://demo1234:demo1234@cluster0.na252.mongodb.net/db-acc-trainings?retryWrites=true&w=majority
   spring.data.mongodb.database: db-acc-trainings
-  my.path: /api/main
-  springdoc.swagger-ui.path: /api/main/policy-api/swagger-ui.html
+  my.path: ''
+  springdoc.swagger-ui.path: /policy-api/swagger-ui.html
   springdoc.swagger-ui.operationsSorter: method
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: policy-api-main
+  name: policy-api
   labels:
-    app: policy-api-main
-    service: policy-api-main
+    app: policy-api
+    service: policy-api
 spec:
   ports:
   - port: 8080
     name: http
   selector:
-    app: policy-api-main
+    app: policy-api
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: policy-api-release-1.0.0
   labels:
-    app: policy-api-main
+    app: policy-api
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: policy-api-main
+      app: policy-api
       version: v1
   template:
     metadata:
       labels:
-        app: policy-api-main
+        app: policy-api
         version: v1
     spec:
       containers:
-      - name: policy-api-main
+      - name: policy-api
         image: quay.io/acctrainings/policy-api-gold:release-1.0.0
         imagePullPolicy: Always
         envFrom:
           - configMapRef:
-              name: policy-api-main
+              name: policy-api
         ports:
         - containerPort: 8080
 ---
 apiVersion: v1
 kind: Route
 metadata:
-  name: policy-api-main
+  name: policy-api
   labels:
-    app: policy-api-main
+    app: policy-api
 spec:
   to:
     kind: Service
-    name: policy-api-main
+    name: policy-api

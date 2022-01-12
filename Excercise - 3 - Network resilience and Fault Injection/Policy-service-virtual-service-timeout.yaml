@@ -1,19 +1,19 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: policy-api-virtual-service-main
+  name: policy-api-virtual-service
 spec:
   hosts:
   - "*"
   gateways:
-  - acctrainings-gateway-main
+  - acctrainings-gateway
   http:
   - match:
     - uri:
-        prefix: /api/main/policy
+        prefix: /policy
     route:
     - destination:
-        host: policy-api-main
+        host: policy-api
         port:
           number: 8080
     timeout: 5s
